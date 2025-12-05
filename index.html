@@ -51,19 +51,21 @@
     header h1{
       font-size:2.8em;font-weight:800;margin-top:25px;
       background:var(--gradiente);-webkit-background-clip:text;
-      color:transparent;text-shadow:0 0 25px rgba(0,229,255,0.5);
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
       animation:pulse 3s infinite alternate;
     }
     header p{color:var(--texto-suave);margin-top:15px;font-size:1.2em;}
     @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
-    @keyframes pulse{0%{text-shadow:0 0 10px rgba(0,229,255,0.3);}100%{text-shadow:0 0 30px rgba(0,229,255,0.8);}}
+    @keyframes pulse{0%{filter:drop-shadow(0 0 10px rgba(0,229,255,0.3));}100%{filter:drop-shadow(0 0 30px rgba(0,229,255,0.8));}}
     .links{margin-top:35px;display:flex;flex-wrap:wrap;justify-content:center;gap:15px;}
-    .links a{
+    .links a, .links button{
       color:var(--texto-claro);text-decoration:none;border:1px solid rgba(255,255,255,0.1);
       padding:12px 24px;border-radius:30px;transition:.3s;
       background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);
+      cursor:pointer;font-family:inherit;font-size:1em;
     }
-    .links a:hover{
+    .links a:hover, .links button:hover{
       background:var(--gradiente);color:#000;transform:translateY(-3px);
       box-shadow:0 10px 25px rgba(0,229,255,0.3);
     }
@@ -78,7 +80,9 @@
     }
     .destacado-502 h3{
       background:var(--gradiente-dorado);-webkit-background-clip:text;
-      color:transparent;font-size:1.6em;margin-bottom:10px;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      font-size:1.6em;margin-bottom:10px;
     }
     .destacado-502 p{color:var(--texto-claro);}
     .destacado-502 a{
@@ -93,6 +97,117 @@
       content:'';width:100px;height:3px;background:var(--gradiente);
       position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
       border-radius:3px;
+    }
+
+    /* Modal Mejorado */
+    .modal{
+      display:none;position:fixed;z-index:1000;left:0;top:0;
+      width:100%;height:100%;overflow:auto;
+      background-color:rgba(0,0,0,0.95);backdrop-filter:blur(15px);
+      animation:fadeIn 0.3s ease-out;
+    }
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .modal-content{
+      background:linear-gradient(145deg, rgba(0,10,20,0.98), rgba(0,20,40,0.98));
+      margin:3% auto;padding:0;
+      border:2px solid var(--azul-neon);border-radius:25px;
+      max-width:700px;
+      box-shadow:0 0 80px rgba(0,229,255,0.4), inset 0 0 60px rgba(0,229,255,0.05);
+      animation:slideIn 0.4s ease-out;
+      position:relative;
+      overflow:hidden;
+    }
+    @keyframes slideIn{from{opacity:0;transform:translateY(-50px) scale(0.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+    
+    .modal-header{
+      background:linear-gradient(135deg, rgba(0,186,255,0.15), rgba(0,229,255,0.15));
+      padding:30px;
+      border-bottom:1px solid rgba(0,229,255,0.3);
+      position:relative;
+    }
+    .modal-header::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;
+      height:2px;
+      background:var(--gradiente);
+    }
+    .close{
+      position:absolute;top:20px;right:25px;
+      color:var(--texto-suave);font-size:32px;
+      font-weight:bold;cursor:pointer;transition:.3s;
+      z-index:10;
+      width:40px;height:40px;
+      display:flex;align-items:center;justify-content:center;
+      border-radius:50%;
+      background:rgba(255,255,255,0.05);
+    }
+    .close:hover{
+      color:#fff;
+      background:rgba(255,0,0,0.2);
+      transform:rotate(90deg);
+    }
+    .modal h2{
+      text-align:center;margin:0;
+      background:var(--gradiente);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      font-size:2em;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+    }
+    .modal h2 i{
+      font-size:0.8em;
+      background:var(--gradiente);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    
+    .modal-body{
+      padding:40px;
+    }
+    
+    /* Estilo para iframe de Google Form */
+    .form-wrapper{
+      background:rgba(0,50,100,0.1);
+      border-radius:15px;
+      overflow:hidden;
+      border:1px solid rgba(0,229,255,0.2);
+      box-shadow:inset 0 0 30px rgba(0,229,255,0.05);
+    }
+    
+    .form-wrapper iframe{
+      width:100%;
+      height:750px;
+      border:none;
+      display:block;
+    }
+    
+    .form-info{
+      background:rgba(0,229,255,0.05);
+      border:1px solid rgba(0,229,255,0.2);
+      border-radius:12px;
+      padding:20px;
+      margin-bottom:25px;
+      text-align:center;
+    }
+    
+    .form-info p{
+      color:var(--texto-suave);
+      font-size:0.95em;
+      margin:0;
+      line-height:1.6;
+    }
+    
+    .form-info i{
+      color:var(--azul-neon);
+      font-size:1.3em;
+      margin-bottom:10px;
+      display:block;
     }
 
     /* Videos */
@@ -134,6 +249,15 @@
     .galeria-item:hover .galeria-overlay{transform:translateY(0);}
     footer{text-align:center;padding:40px 20px;color:var(--texto-suave);
       border-top:1px solid rgba(255,255,255,0.1);margin-top:60px;}
+
+    @media (max-width: 768px) {
+      header h1{font-size:2em;}
+      .modal-content{margin:2% 10px;}
+      .modal-header{padding:25px 20px;}
+      .modal-body{padding:25px 20px;}
+      .modal h2{font-size:1.5em;}
+      .form-wrapper iframe{height:650px;}
+    }
   </style>
 </head>
 <body>
@@ -146,9 +270,9 @@
 
   <div class="links">
     <a href="https://jrchavezmejia.github.io/CREDITOS-CLAR-CCEE-CUNOC-USAC/" target="_blank"><i class="fas fa-globe"></i> Donó el uso gratuito de la plataforma CLAR</a>
-    <a href="https://chatgpt.com/g/g-68a48c2cd96881919e7637768859d364-planteamiento-del-problema" target="_blank"><i class="fas fa-brain"></i> Creador del Agente IA de Investigación</a>
-    <a href="https://chatgpt.com/g/g-68f14dcf63008191a9cc3c61d4e536fc-dr-jose-r-chavez-mejia" target="_blank"><i class="fas fa-user-graduate"></i> ¡Conoce más de mí!</a>
-    <a href="mailto:drjosechavezia@gmail.com"><i class="fas fa-envelope"></i> Contacto</a>
+    <a href="https://chatgpt.com/g/g-68a48c2cd96881919e7637768859d364-planteamiento-del-problema" target="_blank"><i class="fas fa-brain"></i> Prueba mi agente IA de investigación</a>
+    <a href="https://chatgpt.com/g/g-68f14dcf63008191a9cc3c61d4e536fc-dr-jose-r-chavez-mejia" target="_blank"><i class="fas fa-user-graduate"></i> ¡Conoce más de mí con el Agente Virtual!</a>
+    <button id="contactBtn"><i class="fas fa-envelope"></i> Contacto</button>
   </div>
 
   <div class="destacado-502">
@@ -157,6 +281,30 @@
     <a href="https://www.soy502.com/articulo/jose-chavez-mejia-investigador-pone-alto-quetzaltenango-101026" target="_blank"><i class="fas fa-trophy"></i> Leer artículo completo en Soy 502</a>
   </div>
 </header>
+
+<!-- Modal de Contacto -->
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><i class="fas fa-paper-plane"></i> Formulario de Contacto</h2>
+    </div>
+    <div class="modal-body">
+      <div class="form-info">
+        <i class="fas fa-info-circle"></i>
+        <p>Complete el formulario y las respuestas se guardarán automáticamente en la hoja de cálculo.</p>
+      </div>
+      
+      <div class="form-wrapper">
+        <!-- PASO 1: Crea tu Google Form -->
+        <!-- PASO 2: Ve a "Enviar" → Click en el icono "<>" (HTML) -->
+        <!-- PASO 3: Copia la URL que aparece después de src=" -->
+        <!-- PASO 4: Pégala abajo reemplazando la URL de ejemplo -->
+        <iframe src="https://forms.gle/5jJNScCPUQXYZZ756" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section>
   <div class="container">
@@ -206,7 +354,6 @@
 
 <footer>© Licencia Creative Commons Atribución–NoComercial–SinDerivadas 4.0 Internacional (CC BY-NC-ND 4.0) 2025 Dr. José Rodolfo Chávez Mejía — Innovación, Ciencia y Humanidad</footer>
 
-<!-- Partículas -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 particlesJS("particles-js",{
@@ -225,6 +372,28 @@ particlesJS("particles-js",{
   },
   "retina_detect":true
 });
+
+// Modal functionality
+const modal = document.getElementById('contactModal');
+const btn = document.getElementById('contactBtn');
+const span = document.getElementsByClassName('close')[0];
+
+btn.onclick = function() {
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+span.onclick = function() {
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+}
 </script>
 </body>
 </html>
